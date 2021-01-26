@@ -5,9 +5,6 @@ function [mov] = DataToMatFileSingleGroup(group,caminfo,scfactor,gaussparams)
 % (3) Gaussian position and velocity filter
 % (4) adds metadata to mov struct
 
-% deps
-addpath('../common');
-
 INDATAFOLDER = '../../mosaic/';
 runs = dir([INDATAFOLDER group '/Traj*.csv']);
 
@@ -64,7 +61,7 @@ for m = 1:nmovies
         mov(m).tr(t).pos(:,2) = scfactor*caminfo.resy - mov(m).tr(t).pos(:,2);
         
         % interpolate missing positions
-        [mov(m).tr(t).pos,mov(m).tr(t).fr,~] = Interpolate(mov(m).tr(t).pos,mov(m).tr(t).fr);
+        [mov(m).tr(t).pos,mov(m).tr(t).fr,mov(m).tr(t).intflg] = Interpolate(mov(m).tr(t).pos,mov(m).tr(t).fr);
         
         % raw positions, converted from microns to mm
         rawpos = mov(m).tr(t).pos/1e3;
@@ -87,6 +84,9 @@ for m = 1:nmovies
         
         % trim tr(t).fr array to match filtered positions
         mov(m).tr(t).fr = mov(m).tr(t).fr(gaussparams(2)+1:end-gaussparams(2));
+        
+        % trim tr(t).intflg array to match filtered positions
+        mov(m).tr(t).intflg = mov(m).tr(t).intflg(gaussparams(2)+1:end-gaussparams(2));
         
     end
     

@@ -13,7 +13,7 @@ data = dlmread(fname,',',1,0);
 
 
 % trim data to contain only traj index, frames and positions
-data = data(:,1:4);
+data = data(:,2:5);
 
 % add +1 so that frames are numbered from 1
 data(:,2) = data(:,2) + 1;

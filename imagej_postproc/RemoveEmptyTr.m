@@ -1,5 +1,5 @@
 function [mov] = RemoveEmptyTr(mov)
-%RemoveEmptyTr Removes empty trajectories from movies
+% RemoveEmptyTr Removes empty trajectories from movies
 %   Removal of all trajectories that have zero length
 
 for m = 1:length(mov)

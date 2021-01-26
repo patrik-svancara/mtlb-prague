@@ -17,7 +17,7 @@ p(2) = 0;
 hwidth = abs(maxvoltfreq - freq(interp1(sortvolt,sortind,mean([maxvolt minvolt]),'nearest')));
 
 % peak amplitude and width
-p(3) = (2*hwidth)^2*(maxvolt - minvolt);
+p(3) = (2*hwidth)^2*abs(maxvolt - minvolt);
 p(4) = (2*hwidth)^2;
 
 % resonant frequency

@@ -1,4 +1,4 @@
-function [mom] = Moments(h)
+function [mom] = Moments_vect(h)
 % Calculation of statistical moments for a given n-column vector
 % avg = mean value
 % rms = RMS value
